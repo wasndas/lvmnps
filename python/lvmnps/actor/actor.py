@@ -35,7 +35,7 @@ class lvmnps(AMQPActor):
                     "type": "object",
                     "properties": {},
                     "patternProperties": {
-                     "^[A-Za-z0-9_.]+$": {
+                     "^[A-Za-z0-9_.-]+$": {
                            "STATE": {"type": "string"},
                            "DESCR": {"type": "string"},
                            "SWITCH": {"type": "string"},

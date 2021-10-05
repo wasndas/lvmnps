@@ -4,8 +4,8 @@
 
 
 switches:
-    DLI-NPS-01: !include lvmnps_dli_1.yml
-    DLI-NPS-02: !include lvmnps_dli_2.yml
+    DLI_NPS_01: !include lvmnps_dli_1.yml
+    DLI_NPS_02: !include lvmnps_dli_2.yml
 
 timeouts:
         switch_connect: 3

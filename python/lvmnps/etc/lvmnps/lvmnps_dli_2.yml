@@ -1,7 +1,6 @@
 # A dictionary of controller name to NPS controller connection parameters.
 type: dummy
 #type: dli
-name: LVM-PSU-02
 hostname: 10.7.45.29
 use_https: False
 user: 'admin'
@@ -10,27 +9,27 @@ num: 8
 ouo: False # handle also unconfigured ports
 ports:
     1:
-        name: "Router/Switch"
+        name: "router_switch"
         desc: "Router power switch"
     2:
-        name: "Ln2 NIR valve"
+        name: "ln2_nir_valve"
         desc: "LVM Instrument Electronic Box"
     3:
         name: "LVM-Archon-02"
-        desc: ""
+        desc: "???"
     4:
         name: "IEB06"
         desc: "Archon controller"
     5:
-        name: 
-        desc: "Raspberry Pi PC"
+        name: "rpi1"
+        desc: "Raspberry_Pi PC"
     6:
-        name: "RPi"
+        name: "rpi2"
         desc: "Cryogenic solenoid valve for liquid nitrogen."
     7:
-        name: "FFS LED"
-        desc: ""
+        name: "FFS_LED"
+        desc: "???"
     8:
-        name: "Pressure transducers"
+        name: "pressure_transducers"
         desc: "Pressure transducers"
     
