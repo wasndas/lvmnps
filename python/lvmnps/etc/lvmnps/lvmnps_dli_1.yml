@@ -1,0 +1,36 @@
+# A dictionary of controller name to NPS controller connection parameters.
+type: dummy
+#type: dli
+name: LVM-PSU-01
+hostname: 10.7.45.22
+use_https: False
+user: 'admin'
+password: 'rLXR3KxUqiCPGvA'
+num: 8
+ouo: False # handle also unconfigured ports
+ports:
+    1:
+        name: "LVM-ARCHON-02"
+        desc: "Archon controller"
+    2:
+        name: "-"
+        desc: ""
+    3:
+        name: "Hg-Ar Lamp"
+        desc: "spectral calibrationh lamp"
+    4:
+        name: "MI-150 Light Source"
+        desc: ""
+    5:
+        name: "LVM IEB 02 (Spec Controller)"
+        desc: "OSU spectrograph controller"
+    6:
+        name: "LVM-ARCHON-01"
+        desc: "Archon controller"
+    7:
+        name: "625 nm LED (M625L4)"
+        desc: "LED"
+    8:
+        name: "LVM IEB 06 (Spec Controller) "
+        desc: "OSU spectrograph controller"
+
