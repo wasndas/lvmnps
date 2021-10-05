@@ -31,6 +31,19 @@ class lvmnps(AMQPActor):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.schema = {
+                    "type": "object",
+                    "properties": {},
+                    "patternProperties": {
+                     "^[A-Za-z0-9_.]+$": {
+                           "STATE": {"type": "string"},
+                           "DESCR": {"type": "string"},
+                           "SWITCH": {"type": "string"},
+                           "PORT": {"type": "number"},
+                    },
+                    "additionalProperties": False,
+                }
+        }
 
     async def start(self):
         await super().start()
@@ -47,7 +60,10 @@ class lvmnps(AMQPActor):
             except Exception as ex:
                 self.log.error(f"Unexpected exception {type(ex)}: {ex}")
 
+        self.load_schema(self.schema, is_file=False)
+
         self.log.debug("Start done")
+        self.log.debug(str(self.schema))
 
     async def stop(self):
         with suppress(asyncio.CancelledError):
