@@ -29,6 +29,19 @@ def lvmnps(ctx, config_file, verbose):
 
     ctx.obj = {"verbose": verbose, "config_file": config_file}
 
+from yaml import SafeLoader, load
+from sdsstools import read_yaml_file
+
+class Loader(SafeLoader):
+    def __init__(self, stream):
+        self._root = os.path.split(stream.name)[0]
+        super(Loader, self).__init__(stream)
+        self.add_constructor('!include', Loader.include)
+    def include(self, node):
+        filename = os.path.join(self._root, self.construct_scalar(node))
+        with open(filename, 'r') as f:
+            return load(f, Loader)
+
 
 @lvmnps.group(cls=DaemonGroup, prog="nps_actor", workdir=os.getcwd())
 @click.pass_context
@@ -38,7 +51,7 @@ async def actor(ctx):
     default_config_file = os.path.join(os.path.dirname(__file__), "etc/lvmnps_dli.yml")
     config_file = ctx.obj["config_file"] or default_config_file
 
-    lvmnps_obj = NpsActorInstance.from_config(config_file)
+    lvmnps_obj = NpsActorInstance.from_config(read_yaml_file(config_file, loader=Loader))
 
     if ctx.obj["verbose"]:
         lvmnps_obj.log.fh.setLevel(0)
